@@ -119,8 +119,10 @@ export default function (Alpine) {
             }
 
             if (modifiers.includes('inert')) {
-                options.onActivate = () => {
-                    undoInert = setInert(el);
+                options.onPostActivate = () => {
+                    Alpine.nextTick(() => {
+                        undoInert = setInert(el);
+                    });
                 }
             }
 
